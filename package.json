@@ -1,0 +1,52 @@
+{
+  "name": "authentication-provider-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "watch": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patrick246/authentication-provider-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/patrick246/authentication-provider-backend/issues"
+  },
+  "homepage": "https://github.com/patrick246/authentication-provider-backend#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "bunyan": "^1.8.12",
+    "express": "^4.15.4",
+    "inversify": "^4.3.0",
+    "inversify-binding-decorators": "^3.0.0",
+    "inversify-express-utils": "^4.0.0",
+    "inversify-inject-decorators": "^3.0.1",
+    "mongoose": "^4.11.6",
+    "reflect-metadata": "^0.1.10"
+  },
+  "devDependencies": {
+    "@types/bunyan": "^1.8.0",
+    "@types/express": "^4.0.36",
+    "@types/inversify": "^2.0.33",
+    "@types/inversify-binding-decorators": "^2.0.0",
+    "@types/inversify-express-utils": "^2.0.0",
+    "@types/inversify-inject-decorators": "^2.0.0",
+    "@types/mongodb": "^2.2.9",
+    "@types/mongoose": "^4.7.19",
+    "@types/node": "^8.0.19",
+    "@types/reflect-metadata": "0.0.5",
+    "@types/webpack": "^3.0.6",
+    "@types/webpack-env": "^1.13.0",
+    "nodemon": "^1.11.0",
+    "nodemon-webpack-plugin": "^0.1.2",
+    "ts-loader": "^2.3.2",
+    "typescript": "^2.4.2",
+    "watch-ignore-webpack-plugin": "^1.0.0",
+    "webpack": "^3.5.1"
+  }
+}
