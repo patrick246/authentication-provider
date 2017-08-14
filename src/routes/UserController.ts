@@ -1,26 +1,34 @@
-import {ControllerProvider} from "../util/Injector";
-import {injectable} from 'inversify';
-import {interfaces, controller, TYPE, httpGet} from 'inversify-express-utils';
+import {Controller} from "../util/Injector";
+import {httpGet, httpPost, requestBody} from 'inversify-express-utils';
 import {Logger} from "../util/Logger";
 import {Request, Response} from 'express';
 import {IUser} from "../user/UserModel";
+import {UserRepository} from "../user/UserRepository";
+import {inject} from 'inversify';
 
-
-@injectable()
-@controller('/admin/user')
-export class UserController implements interfaces.Controller {
+@Controller('/admin/user')
+export class UserController {
 
     @Logger('UserController')
     private logger;
 
+    constructor(@inject(UserRepository) private userRepository: UserRepository) {
+    }
+
     @httpGet('/')
-    private getAllUsers(req: Request, res: Response): IUser[] {
-        return [
-            {
-                username: 'patrick246',
-                fullname: 'Patrick Hahn',
-                email: 'patrick@patrick246.de'
-            }
-        ]
+    private async getAllUsers(req: Request, res: Response): Promise<IUser[]> {
+        const users = await this.userRepository.getAllUsers();
+        return users.map(user => ({
+            username: user.username,
+            fullname: user.fullname,
+            email: user.email
+        }));
+    }
+
+    @httpPost('/')
+    private addUser(@requestBody() body: IUser) {
+        if (body.username && body.email && body.fullname && body.password) {
+            return this.userRepository.addUser(body);
+        }
     }
 }

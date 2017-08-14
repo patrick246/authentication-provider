@@ -7,7 +7,7 @@ export interface IUser {
     email: string
 }
 
-interface IUserModel extends IUser, mongoose.Document {
+export interface IUserModel extends IUser, mongoose.Document {
 }
 
 const userSchema = new mongoose.Schema({

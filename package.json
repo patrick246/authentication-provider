@@ -22,6 +22,7 @@
     "body-parser": "^1.17.2",
     "bunyan": "^1.8.12",
     "express": "^4.15.4",
+    "helmet": "^3.8.1",
     "inversify": "^4.3.0",
     "inversify-binding-decorators": "^3.0.0",
     "inversify-express-utils": "^4.0.0",
