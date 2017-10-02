@@ -1,7 +1,5 @@
 import {Logger} from "../util/Logger";
 import {Provider} from "../util/Injector";
-import {Connection} from "mongoose";
-import {inject} from 'inversify';
 import {IUser, IUserModel, User} from "./UserModel";
 
 @Provider
@@ -10,7 +8,7 @@ export class UserRepository {
     @Logger('UserRepository')
     private logger;
 
-    constructor(@inject(Connection) private connection: Connection) {
+    constructor() {
         this.logger.info('UserRepository!');
     }
 
@@ -19,7 +17,7 @@ export class UserRepository {
         return user.save();
     }
 
-    public getAllUsers(): Promise<IUserModel[]> {
+    public getAllUsers(): Promise<IUser[]> {
         this.logger.info('GetAllUsers called');
         return User.find({}).exec();
     }

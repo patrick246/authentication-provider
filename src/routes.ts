@@ -2,7 +2,7 @@ import * as express from 'express';
 import * as fs from 'fs';
 import * as bunyan from 'bunyan';
 import * as path from "path";
-
+/*
 const logger = bunyan.createLogger({name: 'RouteConfig'});
 
 function readdir(path: fs.PathLike): Promise<string[]> {
@@ -48,4 +48,7 @@ module.exports = (app) => {
         .catch(reason => {
             logger.fatal('Failed to load routes: ', reason);
         });
-};
+};*/
+
+const context = require.context('./routes', false, /\.ts$/);
+context.keys().map(context);
