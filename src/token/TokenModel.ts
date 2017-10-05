@@ -4,9 +4,12 @@ import * as mongoose from "mongoose";
 import {Schema} from "mongoose";
 
 export interface IToken {
-	expiryDate: Date,
+	accessToken: string,
+	accessTokenExpiryDate: Date,
+	refreshToken: string,
+	refrehsTokenExpiryDate: Date,
 	scope: string[],
-	client: IApplicationModel,
+	application: IApplicationModel,
 	user: IUser
 }
 
@@ -14,8 +17,10 @@ export interface ITokenModel extends IToken, mongoose.Document {
 }
 
 const tokenSchema = new mongoose.Schema({
-	id: String,
-	expiryDate: Date,
+	accessToken: String,
+	accessTokenExpiryDate: Date,
+	refreshToken: String,
+	refrehsTokenExpiryDate: Date,
 	scope: [String],
 	application: {type: Schema.Types.ObjectId, ref: 'Application'},
 	user: {type: Schema.Types.ObjectId, ref: 'User'}

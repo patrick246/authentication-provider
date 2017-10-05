@@ -35,7 +35,8 @@ async function application() {
         app.use(helmet({
             hsts: false
         }));
-        app.use('/authorize', (app as any).oauth.authorize());
+        app.all('/authorize', (app as any).oauth.authorize());
+        app.all('/token', (app as any).oauth.token());
     });
 
     let app = server.build();

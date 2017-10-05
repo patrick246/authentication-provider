@@ -43,6 +43,7 @@
     "@types/mongodb": "^2.2.9",
     "@types/mongoose": "^4.7.19",
     "@types/node": "^8.0.19",
+    "@types/oauth2-server": "^3.0.1",
     "@types/reflect-metadata": "0.0.5",
     "@types/webpack": "^3.0.6",
     "@types/webpack-env": "^1.13.0",

@@ -14,7 +14,7 @@ export class ApplicationRepository {
 	}
 
 	public getAllApplications(): Promise<IApplication[]> {
-		return Application.find({}).exec();
+		return Application.find({}).populate('applicationUser', '-password').exec();
 	}
 
 	public async createApplication(applicationSpec: ApplicationCreationSpecification): Promise<IApplication> {
