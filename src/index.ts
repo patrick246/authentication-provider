@@ -1,19 +1,18 @@
-import 'reflect-metadata';
-import * as bunyan from 'bunyan';
-import * as mongoose from 'mongoose';
-import * as bodyParser from 'body-parser';
-import * as helmet from 'helmet';
-import * as OAuthServer from 'express-oauth-server';
+import "reflect-metadata";
+import * as bunyan from "bunyan";
+import * as mongoose from "mongoose";
+import * as bodyParser from "body-parser";
+import * as helmet from "helmet";
+import * as OAuthServer from "express-oauth-server";
 
-import {Application} from 'express';
-import {ApplicationContainer} from './util/Injector';
-import {InversifyExpressServer} from 'inversify-express-utils';
-import "./routes";
-import {Connection} from "mongoose";
+import {Application} from "express";
+import {ApplicationContainer} from "./util/Injector";
+import {InversifyExpressServer} from "inversify-express-utils";
 import {oauth2model} from "./OAuth2Model";
+import "./routes";
 
 const logger = bunyan.createLogger({name: 'App'});
-mongoose.set('debug', true);
+mongoose.set('debug', (coll, method, query, doc) => logger.info('mongoose query', {coll, method, query, doc}));
 
 process.on('unhandledRejection', err => {
     console.log(err);
