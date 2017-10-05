@@ -1,10 +1,9 @@
 import {Provider} from "../util/Injector";
-import {Application, ApplicationCreationSpecification, IApplication, IApplicationModel} from "./ApplicationModel";
-import {User} from '../user/UserModel';
+import {Application, ApplicationCreationSpecification, IApplication} from "./ApplicationModel";
 import {UserRepository} from "../user/UserRepository";
-import {inject} from 'inversify';
+import {inject} from "inversify";
 
-import * as crypto from 'crypto';
+import * as crypto from "crypto";
 import * as util from "util";
 
 @Provider
@@ -23,6 +22,7 @@ export class ApplicationRepository {
 			.then(bytes => bytes.toString('hex'));
 		application.secret = secret;
 		application.name = applicationSpec.name;
+		application.redirectUri = applicationSpec.redirectUri;
 
 		let username: string = `application:${applicationSpec.name}`;
 
@@ -40,6 +40,7 @@ export class ApplicationRepository {
 			id: application.id,
 			secret: application.secret,
 			name: applicationSpec.name,
+			redirectUri: applicationSpec.redirectUri,
 			applicationUser: {
 				id: user.id,
 				username: user.username,
@@ -48,5 +49,9 @@ export class ApplicationRepository {
 				email: `${applicationSpec.name}@application.idp.patrick246.de`
 			}
 		}
+	}
+
+	public deleteRepository(id: string) {
+		return Application.remove({_id: id}).exec();
 	}
 }

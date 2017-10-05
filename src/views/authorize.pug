@@ -14,14 +14,15 @@ html
                         .card-body
                             h2 Authorization Request
                             h5.card-subtitle.text-muted=application_name
-                            p.mt-4 #{application_name} möchte dich per P246 IDP identifizieren. Folgende Daten werden mit der Anwenung geteilt:
+                            p.mt-4 #{application_name} möchte dich per P246 IDP identifizieren. Folgende Daten werden mit der Anwendung geteilt:
                                 ul
                                     li Dein Benutzername
                                     li Dein voller Name
                                     li Deine Email-Addresse
                         .card-footer
-                            a.btn.btn-success.m-1(href="") Erlauben
-                            a.btn.btn-danger.m-1(href="") Abbrechen
+                            form.form-inline(action="/oauth2/authorize?"+query method="POST")
+                                button.btn.btn-success.m-1(type="submit") Erlauben
+                                a.btn.btn-danger.m-1(href="javascript:history.back()") Abbrechen
                 .col-4
                     .card
                         .card-body
