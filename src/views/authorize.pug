@@ -1,0 +1,33 @@
+doctype html
+html
+    head
+        title Login
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous")
+    body
+        nav.navbar.navbar-dark.bg-dark
+            .container
+                h1.navbar-brand P246 Identity Provider
+        .container.mt-3
+            .row
+                .col-8
+                    .card
+                        .card-body
+                            h2 Authorization Request
+                            h5.card-subtitle.text-muted=application_name
+                            p.mt-4 #{application_name} möchte dich per P246 IDP identifizieren. Folgende Daten werden mit der Anwenung geteilt:
+                                ul
+                                    li Dein Benutzername
+                                    li Dein voller Name
+                                    li Deine Email-Addresse
+                        .card-footer
+                            a.btn.btn-success.m-1(href="") Erlauben
+                            a.btn.btn-danger.m-1(href="") Abbrechen
+                .col-4
+                    .card
+                        .card-body
+                            h2 @#{user.username}
+                            h5.card-subtitle.text-muted=user.fullname
+                            p.mt-4=user.email
+                        .card-footer Nicht #{user.username}?
+                            form.form-inline.d-inline(action="/oauth2/logout?" + query method="POST")
+                                button.btn.btn-outline-danger.btn-sm.m-1(type="submit") Abmelden

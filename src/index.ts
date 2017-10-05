@@ -3,12 +3,11 @@ import * as bunyan from "bunyan";
 import * as mongoose from "mongoose";
 import * as bodyParser from "body-parser";
 import * as helmet from "helmet";
-import * as OAuthServer from "express-oauth-server";
+import * as cookieParser from 'cookie-parser';
 
 import {Application} from "express";
 import {ApplicationContainer} from "./util/Injector";
 import {InversifyExpressServer} from "inversify-express-utils";
-import {oauth2model} from "./OAuth2Model";
 import "./routes";
 
 const logger = bunyan.createLogger({name: 'App'});
@@ -28,15 +27,12 @@ async function application() {
 
     let server = new InversifyExpressServer(ApplicationContainer);
     server.setConfig((app: Application) => {
-        (app as any).oauth = new OAuthServer({
-            model: oauth2model
-        });
+        app.use(cookieParser());
         app.use(bodyParser.json());
+        app.use(bodyParser.urlencoded({extended: false}));
         app.use(helmet({
             hsts: false
         }));
-        app.all('/authorize', (app as any).oauth.authorize());
-        app.all('/token', (app as any).oauth.token());
     });
 
     let app = server.build();

@@ -1,0 +1,25 @@
+doctype html
+html
+    head
+        title Login
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous")
+    body
+        nav.navbar.navbar-dark.bg-dark
+            .container
+                h1.navbar-brand P246 Identity Provider
+        .container.mt-3
+            .jumbotron
+                h1.display-3 Login
+                form(method="POST" action="/oauth2/login")
+                    .form-group
+                        label Username
+                        input.form-control(type="text" name="username")
+                    .form-group
+                        label Passwort
+                        input.form-control(type="password" name="password")
+                    .form-group.d-flex.justify-content-end
+                        button.btn.btn-primary Login
+                    input(type="hidden" name="response_type" value=response_type)
+                    input(type="hidden" name="client_id" value=client_id)
+                    input(type="hidden" name="redirect_uri" value=redirect_uri)
+                    input(type="hidden" name="scope" value=scope)

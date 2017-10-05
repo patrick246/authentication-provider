@@ -1,6 +1,5 @@
 const path = require('path');
 const fs = require('fs');
-const WatchIgnorePlugin = require('watch-ignore-webpack-plugin');
 const NodemonPlugin = require('nodemon-webpack-plugin');
 
 let nodeModules = {};
@@ -19,7 +18,7 @@ module.exports = {
     },
     resolve: {
         extensions: [
-            ".webpack.js", ".web.js", ".ts", ".tsx", ".js"
+            ".webpack.js", ".web.js", ".ts", ".tsx", ".js", "*"
         ]
     },
     module: {
@@ -27,6 +26,10 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 loader: 'ts-loader'
+            },
+            {
+                test: /\.pug/,
+                loader: 'raw-loader'
             }
         ]
     },

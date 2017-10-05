@@ -6,7 +6,8 @@ export interface IUser {
 	username: string,
 	fullname: string,
 	password?: string,
-	email: string
+	email: string,
+	profilePic?: string
 }
 
 export interface IUserModel extends IUser, mongoose.Document {
@@ -18,7 +19,8 @@ const userSchema = new mongoose.Schema({
 	fullname: String,
 	email: String,
 	created: Date,
-	updated: Date
+	updated: Date,
+	profilePic: String
 });
 
 userSchema.pre('save', async function (next) {
